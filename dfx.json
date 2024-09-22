@@ -1,0 +1,26 @@
+{
+  "canisters": {
+    "noise-maps-backend": {
+      "main": "src/noise-maps-backend/main.mo",
+      "type": "motoko"
+    },
+    "noise-maps-frontend": {
+      "dependencies": [
+        "noise-maps-backend"
+      ],
+      "source": [
+        "src/noise-maps-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "noise-maps-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": "mops sources"
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
