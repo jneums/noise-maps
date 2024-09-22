@@ -1,6 +1,6 @@
 [dependencies]
 base = "0.13.0"
-noise = "https://github.com/jneums/noise"
+noise = "0.1.0"
 
 [toolchain]
 moc = "0.13.0"
