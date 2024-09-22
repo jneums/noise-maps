@@ -12,8 +12,10 @@ function App() {
 
   function handleNext() {
     setLoading(true);
-    setSeed(seed + 1);
-    noise_maps_backend.greet(seed + 1).then((noiseMap) => {
+    let updated = parseInt(seed) || 0;
+    updated += 1;
+    setSeed(updated);
+    noise_maps_backend.greet(BigInt(updated)).then((noiseMap) => {
       setNoiseMap(new Uint8Array(noiseMap));
       setLoading(false);
     });
@@ -21,8 +23,18 @@ function App() {
 
   function handlePrevious() {
     setLoading(true);
-    setSeed(seed - 1);
-    noise_maps_backend.greet(seed - 1).then((noiseMap) => {
+    let updated = parseInt(seed) || 0;
+    updated -= 1;
+    setSeed(updated);
+    noise_maps_backend.greet(BigInt(updated)).then((noiseMap) => {
+      setNoiseMap(new Uint8Array(noiseMap));
+      setLoading(false);
+    });
+  }
+
+  function handleSubmit() {
+    setLoading(true);
+    noise_maps_backend.greet(BigInt(seed)).then((noiseMap) => {
       setNoiseMap(new Uint8Array(noiseMap));
       setLoading(false);
     });
@@ -70,6 +82,11 @@ function App() {
               value={seed}
               onChange={(e) => setSeed(e.target.value)}
             />
+            <div style={{ display: 'flex', gap: '8px' }}>
+              <button disabled={loading} type="button" onClick={handleSubmit}>
+                Submit
+              </button>
+            </div>
             <div style={{ display: 'flex', gap: '8px' }}>
               <button disabled={loading} type="button" onClick={handlePrevious}>
                 Previous
