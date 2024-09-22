@@ -7,22 +7,25 @@ const height = 480; // Set the height of the noise map
 function App() {
   const [noiseMap, setNoiseMap] = useState();
   const [seed, setSeed] = useState(0);
+  const [loading, setLoading] = useState(true);
   const canvasRef = useRef(null);
 
   function handleNext() {
+    setLoading(true);
     setSeed(seed + 1);
     noise_maps_backend.greet(seed + 1).then((noiseMap) => {
       setNoiseMap(new Uint8Array(noiseMap));
+      setLoading(false);
     });
-    return false;
   }
 
   function handlePrevious() {
+    setLoading(true);
     setSeed(seed - 1);
     noise_maps_backend.greet(seed - 1).then((noiseMap) => {
       setNoiseMap(new Uint8Array(noiseMap));
+      setLoading(false);
     });
-    return false;
   }
 
   useEffect(() => {
@@ -68,10 +71,10 @@ function App() {
               onChange={(e) => setSeed(e.target.value)}
             />
             <div style={{ display: 'flex', gap: '8px' }}>
-              <button type="button" onClick={handlePrevious}>
+              <button disabled={loading} type="button" onClick={handlePrevious}>
                 Previous
               </button>
-              <button type="button" onClick={handleNext}>
+              <button disabled={loading} type="button" onClick={handleNext}>
                 Next
               </button>
             </div>
