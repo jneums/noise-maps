@@ -1,5 +1,9 @@
 # noise-maps
 
+## Live Demo
+
+The live demo is available at [https://fh2cu-qyaaa-aaaai-qpihq-cai.icp0.io/](https://fh2cu-qyaaa-aaaai-qpihq-cai.icp0.io/).
+
 ## Running the project locally
 
 If you want to run the project locally, you can do so by following these steps:
